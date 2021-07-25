@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:state_management_example/counter/counter.dart';
+import 'package:state_management_example/counter/view/counter_page_setstate.dart';
 import 'package:state_management_example/l10n/l10n.dart';
 
-class App extends StatelessWidget {
-  const App({
+class AppSetState extends StatelessWidget {
+  const AppSetState({
     Key? key,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class App extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const SetStateExample(),
     );
   }
 }
