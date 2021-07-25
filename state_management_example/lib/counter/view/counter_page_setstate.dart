@@ -13,7 +13,7 @@ class _MyAppState extends State<SetStateExample> {
   String title = 'Current fruit:';
   String fruit = 'unknown';
 
-  void callback(newFruit) {
+  void callback({required String newFruit}) {
     setState(() {
       fruit = newFruit;
     });
@@ -23,14 +23,17 @@ class _MyAppState extends State<SetStateExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${'$title'} ${'$fruit'}'),
+        title: Center(child: Text('${'$title'} ${'$fruit'}')),
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FruitSelectorButton(fruit: 'Apple', callback: callback),
             FruitSelectorButton(fruit: 'Orange', callback: callback),
             FruitSelectorButton(fruit: 'Banana', callback: callback),
+            FruitSelectorButton(fruit: 'Kiwi', callback: callback),
+            FruitSelectorButton(fruit: 'Maça', callback: callback),
           ],
         ),
       ),
@@ -52,7 +55,7 @@ class FruitSelectorButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        callback(fruit);
+        callback(newFruit: fruit);
       },
       child: Text(fruit),
     );
