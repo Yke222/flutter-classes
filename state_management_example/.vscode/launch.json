@@ -12,11 +12,11 @@
       "args": ["--flavor", "development", "--target", "lib/main_setstate.dart"]
     },
     {
-      "name": "Launch staging",
+      "name": "Launch getx",
       "request": "launch",
       "type": "dart",
-      "program": "lib/main_staging.dart",
-      "args": ["--flavor", "staging", "--target", "lib/main_staging.dart"]
+      "program": "lib/main_getx.dart",
+      "args": ["--flavor", "staging", "--target", "lib/main_getx.dart"]
     },
     {
       "name": "Launch production",

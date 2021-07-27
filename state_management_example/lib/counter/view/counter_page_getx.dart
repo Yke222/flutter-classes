@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:state_management_example/controller/fruitController.dart';
 
-class SetStateExample extends StatefulWidget {
-  const SetStateExample({
+class GetXExample extends StatefulWidget {
+  const GetXExample({
     Key? key,
   }) : super(key: key);
 
@@ -9,21 +11,20 @@ class SetStateExample extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<SetStateExample> {
-  String title = 'Current fruit:';
-  String fruit = 'N/A';
-
-  void callback({required String newFruit}) {
-    setState(() {
-      fruit = newFruit;
-    });
-  }
+class _MyAppState extends State<GetXExample> {
+  final FruitController fruitController = Get.put(FruitController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('${'$title'} ${'$fruit'}')),
+        title: GetBuilder<FruitController>(
+          builder: (_) {
+            return Center(
+              child: Text('Current fruit: ${fruitController.fruit}'),
+            );
+          },
+        ),
       ),
       body: Center(
         child: Column(
@@ -31,27 +32,27 @@ class _MyAppState extends State<SetStateExample> {
           children: [
             FruitSelectorButton(
               fruit: 'Apple',
-              callback: callback,
+              controller: fruitController,
               bgColor: Colors.redAccent,
             ),
             FruitSelectorButton(
               fruit: 'Orange',
-              callback: callback,
+              controller: fruitController,
               bgColor: Colors.orangeAccent,
             ),
             FruitSelectorButton(
               fruit: 'Banana',
-              callback: callback,
+              controller: fruitController,
               bgColor: Colors.yellowAccent,
             ),
             FruitSelectorButton(
               fruit: 'Kiwi',
-              callback: callback,
+              controller: fruitController,
               bgColor: Colors.greenAccent,
             ),
             FruitSelectorButton(
               fruit: 'Watermelon',
-              callback: callback,
+              controller: fruitController,
               bgColor: Colors.purpleAccent,
             ),
           ],
@@ -65,19 +66,19 @@ class FruitSelectorButton extends StatelessWidget {
   const FruitSelectorButton({
     Key? key,
     required this.fruit,
-    required this.callback,
+    required this.controller,
     this.bgColor = Colors.blue,
   }) : super(key: key);
 
   final String fruit;
-  final Function callback;
   final Color bgColor;
+  final FruitController controller;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        callback(newFruit: fruit);
+        controller.setFruit(fruit);
       },
       style: ElevatedButton.styleFrom(primary: bgColor),
       child: Text(

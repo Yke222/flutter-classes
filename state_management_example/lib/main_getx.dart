@@ -1,17 +1,11 @@
-// Copyright (c) 2021, Very Good Ventures
-// https://verygood.ventures
-//
-// Use of this source code is governed by an MIT-style
-// license that can be found in the LICENSE file or at
-// https://opensource.org/licenses/MIT.
-
 import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
 import 'package:bloc/bloc.dart';
-import 'package:state_management_example/app/app.dart';
 import 'package:state_management_example/app/app_bloc_observer.dart';
+
+import 'app/app_getx.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();
@@ -20,7 +14,7 @@ void main() {
   };
 
   runZonedGuarded(
-    () => runApp(const App()),
+    () => runApp(const AppGetX()),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
